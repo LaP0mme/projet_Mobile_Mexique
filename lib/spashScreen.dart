@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_mobil/constentes.dart' as cons;
+import 'package:proyecto_mobil/login.dart';
+import 'package:proyecto_mobil/dependencies.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key, required this.title});
@@ -39,19 +42,45 @@ class _splashScreen extends State<splashScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('../images/Welcome_1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: size.height * 0.05,
+              left: size.width * 0.05,
+            ),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                '../images/Welcome_2.png',
+                width: size.width * 0.5,
+              ),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.only(bottom: size.height * 0.1),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                    child: const Text('Iniciar Sesión'),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => Login()));
+                },
+                child: const Text('Iniciar Sesión',
+                    style: TextStyle(color: cons.white)),
+                style: ElevatedButton.styleFrom(
+                  primary: cons.primario,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                ],
+                  fixedSize: Size(size.width * 0.6, size.height * 0.02),
+                ),
               ),
             ),
           ),
@@ -60,6 +89,7 @@ class _splashScreen extends State<splashScreen> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     'Si no tiene cuenta, ',
@@ -71,7 +101,7 @@ class _splashScreen extends State<splashScreen> {
                     },
                     child: const Text(
                       'Registrese',
-                      style: TextStyle(color: Colors.deepOrange),
+                      style: TextStyle(color: cons.secundario),
                     ),
                   )
                 ],
