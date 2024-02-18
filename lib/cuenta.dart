@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_mobil/constentes.dart' as con;
-import 'package:file_picker/file_picker.dart';
 
 import 'Home.dart';
 
@@ -78,7 +77,7 @@ class _CuentaState extends State<Cuenta> {
                       right: size.width * 0.05,
                     ),
                     decoration: BoxDecoration(
-                      color: con.blanco,
+                      color: con.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Column(
@@ -161,7 +160,7 @@ class _CuentaState extends State<Cuenta> {
                           },
                           child: const Text(
                             'Regristrarse',
-                            style: TextStyle(color: con.blanco, fontSize: 16),
+                            style: TextStyle(color: con.white, fontSize: 16),
                           ),
                         ),
                         const SizedBox(height: 20),
