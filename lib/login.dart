@@ -43,14 +43,14 @@ class _LoginState extends State<Login> {
           //Login Menu without pixel overflow
           Padding(
             padding: EdgeInsets.only(
-              top: size.height * 0.45,
+              top: size.height * 0.30,
               left: size.width * 0.05,
               right: size.width * 0.05,
             ),
             child: Column(
               children: [
                 Container(
-                  height: size.height * 0.50,
+                  height: size.height * 0.65,
                   padding: EdgeInsets.only(
                     top: size.height * 0.05,
                     left: size.width * 0.05,
@@ -71,7 +71,7 @@ class _LoginState extends State<Login> {
                             color: cons.secundario,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Correo/Usuario',
@@ -79,14 +79,16 @@ class _LoginState extends State<Login> {
                             border: OutlineInputBorder(),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Contraseña',
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                            ),
                           ),
+                          obscureText: true,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: cons.primario,
@@ -94,16 +96,16 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             fixedSize:
-                                Size(size.width * 0.6, size.height * 0.05),
+                                Size(size.width * 0.8, size.height * 0.10),
                           ),
                           onPressed: () {},
                           child: const Text('Iniciar Sesión',
                               style: TextStyle(color: cons.white,
-                              fontSize: 16),
+                              fontSize: 20),
 
                         ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         TextButton(
                           onPressed: () {},
                           child: const Text(

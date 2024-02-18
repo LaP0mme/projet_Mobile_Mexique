@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_mobil/constentes.dart' as cons;
 import 'package:proyecto_mobil/login.dart';
 import 'package:proyecto_mobil/dependencies.dart';
+import 'package:proyecto_mobil/register.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key, required this.title});
@@ -97,7 +98,8 @@ class _splashScreen extends State<splashScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => Register()));
                     },
                     child: const Text(
                       'Registrese',
