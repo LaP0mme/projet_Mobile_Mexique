@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_mobil/constentes.dart' as cons;
+import 'package:proyecto_mobil/home.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -125,7 +126,11 @@ class _RegisterState extends State<Register> {
                             fixedSize:
                                 Size(size.width * 0.6, size.height * 0.05),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+                          },
                           child: const Text(
                             'Registrarse',
                             style: TextStyle(color: cons.white, fontSize: 16),
@@ -141,13 +146,10 @@ class _RegisterState extends State<Register> {
                         ),
                       ],
                     ),
-
                   ),
                 ),
-
               ],
             ),
-
           ),
         ],
       ),

@@ -20,15 +20,15 @@ class drawerWidget extends StatelessWidget {
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.green),
               accountName: Text(
-                "Alexia Bayol",
+                "Damien Lopez",
                 style: TextStyle(fontSize: 18),
               ),
-              accountEmail: Text("alexia.bayol@hotmail.fr"),
+              accountEmail: Text("lopezdamien375@gmail.com"),
               currentAccountPictureSize: Size.square(50),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 165, 255, 137),
                 child: Text(
-                  "A",
+                  "DL",
                   style: TextStyle(fontSize: 30.0, color: Colors.blue),
                 ), //Text
               ), //circleAvatar

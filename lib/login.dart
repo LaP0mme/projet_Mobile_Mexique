@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_mobil/constentes.dart' as cons;
+import 'package:proyecto_mobil/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -98,7 +99,10 @@ class _LoginState extends State<Login> {
                             fixedSize:
                                 Size(size.width * 0.8, size.height * 0.10),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => Home()));
+                          },
                           child: const Text('Iniciar Sesión',
                               style: TextStyle(color: cons.white,
                               fontSize: 20),
