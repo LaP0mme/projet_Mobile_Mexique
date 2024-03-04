@@ -21,7 +21,7 @@ class _RegisterState extends State<Register> {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('../images/Welcome_1.png'),
+                  image: AssetImage('../images/Welcome1.png'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -37,7 +37,7 @@ class _RegisterState extends State<Register> {
           Align(
             alignment: Alignment.topCenter,
             child: Image.asset(
-              '../images/Welcome_2.png',
+              '../images/Welcome2.png',
               width: size.width * 0.25,
             ),
           ),

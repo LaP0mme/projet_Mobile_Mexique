@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_mobil/constentes.dart' as cons;
-import 'package:proyecto_mobil/home.dart';
+import 'package:proyecto_mobil/constentes.dart' as con;
+import 'package:proyecto_mobil/utils/singleton.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,9 +13,38 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final user = TextEditingController();
+  final password = TextEditingController();
+  bool bandera = false;
+
+  Singleton singleton = Singleton();
+  late final SharedPreferences prefs;
+
+  @override
+  void initState() {
+    initPreferences();
+    super.initState();
+  }
+
+  Future<void> initPreferences() async{
+    prefs = await SharedPreferences.getInstance();
+    checkIsLogin();
+  }
+
+  void checkIsLogin(){
+    //String user = (prefs.getString('user') ?? '');
+    //String password = (prefs.getString('pass') ?? '');
+    bool band = (prefs.getBool('isLogeado') ?? false);
+
+    if (band){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Home()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -21,44 +53,43 @@ class _LoginState extends State<Login> {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('../images/Welcome_1.png'),
+                  image: AssetImage('../images/Welcome1.png'),
                   fit: BoxFit.fill,
                 ),
               ),
             ),
           ),
-          // set the backgroud color to brown
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.55),
             child: Container(
-              color: cons.darkBrown,
+              color: con.fondo,
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Image.asset(
-              '../images/Welcome_2.png',
+              '../images/Welcome2.png',
               width: size.width * 0.4,
             ),
           ),
-          //Login Menu without pixel overflow
           Padding(
             padding: EdgeInsets.only(
-              top: size.height * 0.30,
               left: size.width * 0.05,
               right: size.width * 0.05,
+              bottom: size.height * 0.2,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: size.height * 0.65,
                   padding: EdgeInsets.only(
                     top: size.height * 0.05,
                     left: size.width * 0.05,
                     right: size.width * 0.05,
                   ),
                   decoration: BoxDecoration(
-                    color: cons.white,
+                    color: con.white,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: SingleChildScrollView(
@@ -69,54 +100,77 @@ class _LoginState extends State<Login> {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: cons.secundario,
+                            color: con.secundario,
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         TextFormField(
+                          controller: user,
+                          obscureText: false,
                           decoration: const InputDecoration(
                             labelText: 'Correo/Usuario',
-                            //only the bottom border
                             border: OutlineInputBorder(),
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         TextFormField(
+                          controller: password,
+                          obscureText: true,
                           decoration: const InputDecoration(
                             labelText: 'Contraseña',
-                            border: OutlineInputBorder(
-                            ),
+                            border: OutlineInputBorder(),
                           ),
-                          obscureText: true,
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
+                        bandera
+                            ? Text(
+                          'USUARIO O CONTRASENA INCORRECTOS',
+                          style: TextStyle(
+                              color: con.terciario, fontSize: 20),
+                        )
+                            : Container(),
+                        const SizedBox(height: 20),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: cons.primario,
+                            primary: con.primario,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                             fixedSize:
-                                Size(size.width * 0.8, size.height * 0.10),
+                            Size(size.width * 0.6, size.height * 0.05),
                           ),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) => Home()));
-                          },
-                          child: const Text('Iniciar Sesión',
-                              style: TextStyle(color: cons.white,
-                              fontSize: 20),
+                            if (user.text == 'admin' &&
+                                password.text == 'admin') {
+                              singleton.user = user.text;
+                              singleton.password = password.text;
 
+                              prefs.setString('user', user.text);
+                              prefs.setString('pass', password.text);
+                              prefs.setBool('isLogeado', true);
+
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const Home()));
+                            } else {
+                              setState(() {
+                                bandera = true;
+                              });
+                            }
+                          },
+                          child: const Text(
+                            'Iniciar Sesión',
+                            style: TextStyle(color: con.white, fontSize: 16),
+                          ),
                         ),
-                        ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         TextButton(
                           onPressed: () {},
                           child: const Text(
                             'Olvidaste tu contraseña?',
-                            style: TextStyle(color: cons.secundario),
+                            style: TextStyle(color: con.secundario),
                           ),
                         ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),

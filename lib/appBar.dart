@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_mobil/utils/singleton.dart';
 
 import 'splashScreen.dart';
 
 class drawerWidget extends StatelessWidget {
-  const drawerWidget({super.key});
+  const drawerWidget({super.key, required this.singleton});
+
+  final Singleton singleton;
 
 
   @override
@@ -13,17 +16,17 @@ class drawerWidget extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(0),
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.green,
             ), //BoxDecoration
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.green),
               accountName: Text(
-                "Damien Lopez",
+                singleton.user,
                 style: TextStyle(fontSize: 18),
               ),
-              accountEmail: Text("lopezdamien375@gmail.com"),
+              accountEmail: Text("damien.lopez@hotmail.fr"),
               currentAccountPictureSize: Size.square(50),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 165, 255, 137),

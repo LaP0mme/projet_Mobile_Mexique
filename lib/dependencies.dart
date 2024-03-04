@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:searchfield/searchfield.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 
 void main() {
@@ -74,14 +73,12 @@ class _SearchFieldSampleState extends State<SearchFieldSample> {
         appBar: AppBar(
           title: Text(
             'Dynamic sample Demo',
-            style: GoogleFonts.aBeeZee(
-              textStyle: const TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
-        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {

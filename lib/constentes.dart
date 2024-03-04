@@ -9,3 +9,4 @@ const black = Colors.black;
 const grey = Colors.grey;
 const darkBrown = Color(0xFF3E2723);
 const fondo = Color(0xFF451717);
+const blanco = Colors.white;
